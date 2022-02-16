@@ -43,10 +43,10 @@ all : $(BIN_PATH)/$(BIN)
 
 $(BIN_PATH)/$(BIN) : $(OBJ)
 	@echo "Linking: $@"
-	$(CXX) $(OBJ) -o $@ ${libs}
+	$(CXX) $(OBJ) -o $@ ${libs} -l pthread
 
 -include $(DEPS)
 
 $(BUILD_PATH)/%.o : $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
-	$(CXX) $(CXXFLAGS) $(INCL_PATH) -MP -MMD -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MP -MMD -c $< -o $@
