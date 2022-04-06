@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    Ringbuffer<char> buffer(10);
+    Ringbuffer buffer(10);
 
     // Program runs while shouldExit is false
     bool shouldExit = false;

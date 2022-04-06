@@ -9,14 +9,14 @@
 
 namespace Reader
 {
-    void BufferReader(Ringbuffer<char>& buffer, bool& shouldExit)
+    void BufferReader(Ringbuffer& buffer, bool& shouldExit)
     {
         while (!shouldExit)
             buffer >> std::cout;  // Overloaded operator: Calls buffet.Get() and sends output to
                                   // standard output
     }
 
-    void KeyboardReader(Ringbuffer<char>& buffer, bool& shouldExit)
+    void KeyboardReader(Ringbuffer& buffer, bool& shouldExit)
     {
         std::string input;
         // Read input from cin to input, exit when input is 0
@@ -27,7 +27,7 @@ namespace Reader
         buffer.Terminate();  // Buffer should terminate
     }
 
-    void CharWriter(Ringbuffer<char>& buffer, bool& shouldExit)
+    void CharWriter(Ringbuffer& buffer, bool& shouldExit)
     {
         const char* str =
             "According to all known laws of aviation, there is no way a bee should be able to fly";
