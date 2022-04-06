@@ -12,7 +12,8 @@ namespace Reader
     void BufferReader(Ringbuffer<char>& buffer, bool& shouldExit)
     {
         while (!shouldExit)
-            buffer >> std::cout;
+            buffer >> std::cout;  // Overloaded operator: Calls buffet.Get() and sends output to
+                                  // standard output
     }
 
     void KeyboardReader(Ringbuffer<char>& buffer, bool& shouldExit)
@@ -21,9 +22,9 @@ namespace Reader
         // Read input from cin to input, exit when input is 0
         while (std::getline(std::cin, input), input != "0")
             for (char c : input)
-                buffer << c;
+                buffer << c;  // Overloaded operator: Calls buffet.Add(c)
         shouldExit = true;
-        buffer.Die();
+        buffer.Terminate();  // Buffer should terminate
     }
 
     void CharWriter(Ringbuffer<char>& buffer, bool& shouldExit)
@@ -31,6 +32,8 @@ namespace Reader
         const char* str =
             "According to all known laws of aviation, there is no way a bee should be able to fly";
         size_t index = 0;
+
+        // Go thorugh str and add all characters to buffer with an interval of one second
         while (!shouldExit && index < strlen(str))
         {
             buffer << str[index++];

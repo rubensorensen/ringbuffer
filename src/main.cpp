@@ -1,9 +1,10 @@
 #include "../include/readers.hpp"
-#include "../include/ringbuffer.hpp"
 
 int main(void)
 {
     Ringbuffer<char> buffer(10);
+
+    // Program runs while shouldExit is false
     bool shouldExit = false;
 
     // J-threads, introduced in C++ 20, automatically joins on destruction
