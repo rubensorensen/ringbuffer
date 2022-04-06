@@ -1,5 +1,5 @@
 CXX ?= g++
-CFLAGS = -g -Wall -Wextra -std=c++17
+CFLAGS = -g -Wall -Wextra -std=c++20
 
 BUILD_PATH = build
 BIN_PATH = $(BUILD_PATH)/bin
@@ -43,7 +43,7 @@ all : $(BIN_PATH)/$(BIN)
 
 $(BIN_PATH)/$(BIN) : $(OBJ)
 	@echo "Linking: $@"
-	$(CXX) $(OBJ) -o $@ ${libs} -l pthread
+	$(CXX) $(OBJ) -o $@ ${libs} -lpthread
 
 -include $(DEPS)
 

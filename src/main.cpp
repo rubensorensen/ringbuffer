@@ -1,16 +1,15 @@
 #include "../include/readers.hpp"
 #include "../include/ringbuffer.hpp"
-#include <iostream>
-#include <thread>
 
 int main(void)
 {
-  Ringbuffer buffer(10);
-  std::thread kb(Reader::KeyboardReader, &buffer);
-  std::thread bf(Reader::BufferReader, &buffer);
+    Ringbuffer<char> buffer(10);
+    bool shouldExit = false;
 
-  kb.join();
-  bf.join();
+    // J-threads, introduced in C++ 20, automatically joins on destruction
+    std::jthread kb(Reader::KeyboardReader, std::ref(buffer), std::ref(shouldExit));
+    std::jthread bf(Reader::BufferReader, std::ref(buffer), std::ref(shouldExit));
+    std::jthread cw(Reader::CharWriter, std::ref(buffer), std::ref(shouldExit));
 
-  return 0;
+    return EXIT_SUCCESS;
 }
