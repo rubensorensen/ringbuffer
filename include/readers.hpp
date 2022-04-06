@@ -27,7 +27,7 @@ namespace Reader
         buffer.Terminate();  // Buffer should terminate
     }
 
-    void CharWriter(Ringbuffer& buffer, bool& shouldExit)
+    void StringReader(Ringbuffer& buffer, bool& shouldExit)
     {
         const char* str =
             "According to all known laws of aviation, there is no way a bee should be able to fly";
